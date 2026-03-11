@@ -26,18 +26,6 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
-    public static function canViewAny(): bool
-    {
-        return Auth::user()?->is_admin ?? false;
-    }
-
-    public static function canAccess(): bool
-    {
-        return Auth::user()?->is_admin ?? false;
-    }
-
-
-
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -110,7 +98,8 @@ class UserResource extends Resource
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->authorizeIndividualRecords(),
                 ]),
             ]);
     }
