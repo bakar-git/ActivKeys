@@ -41,6 +41,11 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
     ];
 
+    public function canImpersonate()
+    {
+        return $this->is_admin;
+    }
+
     /**
      * Get the attributes that should be cast.
      *
