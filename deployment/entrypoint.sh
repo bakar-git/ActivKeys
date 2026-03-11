@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-echo "[entrypoint] Running database migrations..."
-php /app/artisan migrate --force
-
 echo "[entrypoint] Caching config, routes, views..."
 php /app/artisan optimize
 
