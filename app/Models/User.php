@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Filament\Panel;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\KeyType;
+use App\Models\LiveKey;
+use App\Models\StoredKey;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -24,6 +27,8 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'is_admin',
+        'is_active',
     ];
 
     /**
@@ -46,12 +51,28 @@ class User extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'is_active' => 'boolean',
         ];
     }
 
-
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->is_active;
+    }
+
+    public function keyTypes()
+    {
+        return $this->hasMany(KeyType::class);
+    }
+
+    public function liveKeys()
+    {
+        return $this->hasMany(LiveKey::class);
+    }
+
+    public function storedKeys()
+    {
+        return $this->hasMany(StoredKey::class);
     }
 }

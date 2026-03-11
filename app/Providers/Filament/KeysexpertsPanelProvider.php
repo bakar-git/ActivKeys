@@ -28,7 +28,7 @@ class KeysexpertsPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('keysexperts')
-            ->path('keysexperts')
+            ->path('app')
             ->viteTheme('resources/css/filament/keysexperts/theme.css')
             ->login()
             ->colors([

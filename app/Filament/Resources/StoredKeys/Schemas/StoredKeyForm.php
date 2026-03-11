@@ -8,6 +8,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Unique;
 
 class StoredKeyForm
 {
@@ -16,7 +19,7 @@ class StoredKeyForm
         return $schema
             ->components([
                 TextInput::make('key')
-                    ->unique()
+                    ->unique(ignoreRecord: true, modifyRuleUsing: fn (Unique $rule) => $rule->where('user_id', Auth::id()))
                     ->required(),
                 TextInput::make('description'),
                 TextInput::make('edition_id'),
@@ -33,7 +36,10 @@ class StoredKeyForm
                 Toggle::make('is_sold')
                     ->required(),
                 Select::make('key_type_id')
-                    ->relationship('keyType', 'name')
+                    ->relationship('keyType', 'name', fn (Builder $query) => Auth::user()?->is_admin
+                        ? $query
+                        : $query->where('user_id', Auth::id())
+                    )
                     ->searchable()
                     ->required(),
             ]);

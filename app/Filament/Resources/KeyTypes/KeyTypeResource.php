@@ -5,6 +5,7 @@ namespace App\Filament\Resources\KeyTypes;
 use App\Filament\Resources\KeyTypes\Pages\ManageKeyTypes;
 use App\Models\KeyType;
 use BackedEnum;
+use Dom\Text;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -17,6 +18,9 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Unique;
 
 class KeyTypeResource extends Resource
 {
@@ -29,7 +33,8 @@ class KeyTypeResource extends Resource
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->unique(ignoreRecord: true, modifyRuleUsing: fn (Unique $rule) => $rule->where('user_id', Auth::id())),
                 Toggle::make('daily_check')
                     ->required(),
             ]);
@@ -43,6 +48,9 @@ class KeyTypeResource extends Resource
                     ->searchable(),
                 IconColumn::make('daily_check')
                     ->boolean(),
+                TextColumn::make('user.name')
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -71,5 +79,14 @@ class KeyTypeResource extends Resource
         return [
             'index' => ManageKeyTypes::route('/'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        if (!Auth::user()?->is_admin) {
+            $query->where('user_id', Auth::id());
+        }
+        return $query;
     }
 }

@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('stored_keys', function (Blueprint $table) {
             $table->id();
-            $table->string('key')->unique();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('key');
             $table->string('description')->nullable();
             $table->string('edition_id')->nullable();
             $table->string('key_type')->nullable();
@@ -27,6 +28,8 @@ return new class extends Migration
             $table->boolean('is_sold')->default(false);
             $table->foreignIdFor(KeyType::class)->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
+
+            $table->unique(['user_id', 'key']);
         });
     }
 

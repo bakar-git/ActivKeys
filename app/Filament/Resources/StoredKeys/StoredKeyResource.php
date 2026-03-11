@@ -15,6 +15,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class StoredKeyResource extends Resource
 {
@@ -54,5 +56,14 @@ class StoredKeyResource extends Resource
             'view' => ViewStoredKey::route('/{record}'),
             'edit' => EditStoredKey::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        if (!Auth::user()?->is_admin) {
+            $query->where('user_id', Auth::id());
+        }
+        return $query;
     }
 }

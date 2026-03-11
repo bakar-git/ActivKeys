@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('live_keys', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('key');
             $table->string('description')->nullable();
             $table->string('edition_id')->nullable();

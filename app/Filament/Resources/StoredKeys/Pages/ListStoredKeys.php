@@ -30,6 +30,7 @@ class ListStoredKeys extends ListRecords
                         Select::make('key_type_id')
                             ->label('Key Type')
                             ->searchable()
+                            ->preload()
                             ->relationship('keyType', 'name')
                             ->required(),
                         Textarea::make('keys')

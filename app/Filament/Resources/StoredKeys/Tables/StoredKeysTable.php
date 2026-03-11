@@ -17,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class StoredKeysTable
 {
@@ -84,7 +85,10 @@ class StoredKeysTable
             ])
             ->filters([
                 // filter by key Type relationship sort by name
-                SelectFilter::make('keyType')->relationship('keyType', 'name', fn (Builder $query) => $query->orderBy('name', 'desc')),
+                SelectFilter::make('keyType')->relationship('keyType', 'name', fn (Builder $query) => Auth::user()?->is_admin
+                    ? $query->orderBy('name', 'desc')
+                    : $query->where('user_id', Auth::id())->orderBy('name', 'desc')
+                ),
                 SelectFilter::make('remaining_counts')
                 ->options([
                     'positive' => 'Greater than 0',
