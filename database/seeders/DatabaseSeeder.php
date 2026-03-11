@@ -21,31 +21,5 @@ class DatabaseSeeder extends Seeder
             'key' => AppSettingKey::MaxKeysAllowed->value,
             'value' => '50',
         ]);
-
-        // Admin user
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
-            'is_admin' => true,
-            'is_active' => true,
-        ]);
-
-        // Regular users
-        User::create([
-            'name' => 'Alice',
-            'email' => 'alice@example.com',
-            'password' => bcrypt('password'),
-            'is_admin' => false,
-            'is_active' => true,
-        ]);
-
-        User::create([
-            'name' => 'Bob',
-            'email' => 'bob@example.com',
-            'password' => bcrypt('password'),
-            'is_admin' => false,
-            'is_active' => true,
-        ]);
     }
 }
