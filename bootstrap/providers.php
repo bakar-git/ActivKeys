@@ -2,5 +2,5 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    App\Providers\Filament\KeysexpertsPanelProvider::class,
+    App\Providers\Filament\AppPanelProvider::class,
 ];

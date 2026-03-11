@@ -10,17 +10,17 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
 export default function Welcome() {
-  return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <Header />
-      <Hero />
-      <Features />
-      <Services />
-      <UseCases />
-      <Pricing />
-      <Testimonials />
-      <CTA />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="min-h-screen bg-gray-900 text-white">
+            <Header />
+            <Hero />
+            <Features />
+            <Services />
+            <UseCases />
+            <Pricing />
+            <Testimonials />
+            <CTA />
+            <Footer />
+        </div>
+    );
 }
