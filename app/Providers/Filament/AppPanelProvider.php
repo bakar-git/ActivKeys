@@ -19,6 +19,10 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Andreia\FilamentNordTheme\FilamentNordThemePlugin;
+use App\Filament\Widgets\AdminStatsOverview;
+use App\Filament\Widgets\UsersBreakdownWidget;
+use App\Filament\Widgets\UserStatsWidget;
+use Filament\Support\Enums\Width;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -33,6 +37,10 @@ class AppPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->favicon(asset('logo.svg'))
+            ->brandLogo(fn () => view('filament.logo'))
+            ->brandLogoHeight('3rem')
+            ->maxContentWidth(Width::Full)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
@@ -40,9 +48,11 @@ class AppPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                AdminStatsOverview::class,
+                UsersBreakdownWidget::class,
+                UserStatsWidget::class,
             ])
+            ->topNavigation(true)
             ->plugin(FilamentNordThemePlugin::make())
             ->middleware([
                 EncryptCookies::class,
