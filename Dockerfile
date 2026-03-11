@@ -76,11 +76,12 @@ RUN chmod -R 775 /app/storage /app/bootstrap/cache /app/public
 # Copy supervisor configuration
 COPY deployment/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Optimize Laravel
-# RUN php artisan optimize
+# Copy entrypoint
+COPY deployment/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose ports
 EXPOSE 8000
 
-# Start supervisor
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+# Run migrations, optimize, filament:optimize, then start supervisor
+CMD ["/entrypoint.sh"]
