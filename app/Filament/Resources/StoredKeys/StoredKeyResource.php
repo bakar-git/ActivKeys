@@ -26,6 +26,11 @@ class StoredKeyResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'key';
 
+    public static function canViewAny(): bool
+    {
+        return !Auth::user()?->is_admin;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return StoredKeyForm::configure($schema);

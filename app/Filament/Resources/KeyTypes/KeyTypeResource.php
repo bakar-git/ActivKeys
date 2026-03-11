@@ -28,6 +28,11 @@ class KeyTypeResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;
 
+    public static function canViewAny(): bool
+    {
+        return !Auth::user()?->is_admin;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return $schema

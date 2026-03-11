@@ -25,8 +25,6 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
-    protected static string|\UnitEnum|null $navigationGroup = 'Admin';
-
     public static function canViewAny(): bool
     {
         return Auth::user()?->is_admin ?? false;
@@ -81,15 +79,24 @@ class UserResource extends Resource
                 IconColumn::make('is_active')
                     ->label('Active')
                     ->boolean(),
-                TextColumn::make('keyTypes_count')
+                TextColumn::make('key_types_count')
                     ->counts('keyTypes')
-                    ->label('Key Types'),
-                TextColumn::make('storedKeys_count')
+                    ->label('Key Types')
+                    ->badge()
+                    ->color('info')
+                    ->sortable(),
+                TextColumn::make('stored_keys_count')
                     ->counts('storedKeys')
-                    ->label('Stored Keys'),
-                TextColumn::make('liveKeys_count')
+                    ->label('Stored Keys')
+                    ->badge()
+                    ->color('warning')
+                    ->sortable(),
+                TextColumn::make('live_keys_count')
                     ->counts('liveKeys')
-                    ->label('Live Keys'),
+                    ->label('Live Keys')
+                    ->badge()
+                    ->color('success')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

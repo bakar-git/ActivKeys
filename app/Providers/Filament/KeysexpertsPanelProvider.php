@@ -13,6 +13,9 @@ use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Width;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
+use App\Filament\Widgets\AdminStatsOverview;
+use App\Filament\Widgets\UsersBreakdownWidget;
+use App\Filament\Widgets\UserStatsWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -45,8 +48,9 @@ class KeysexpertsPanelProvider extends PanelProvider
             ->maxContentWidth(Width::Full)
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                AdminStatsOverview::class,
+                UsersBreakdownWidget::class,
+                UserStatsWidget::class,
             ])
             ->topNavigation(true)
             ->middleware([
