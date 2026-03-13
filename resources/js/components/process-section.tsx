@@ -181,20 +181,26 @@ export function ProcessSection() {
 
         {/* Data table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left">
+          <table className="w-full min-w-[980px] text-left">
             <thead>
               <tr className="border-b-2 border-foreground">
                 <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
-                  Product
+                  Key
+                </th>
+                <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
+                  Description
                 </th>
                 <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
                   Key Type
                 </th>
                 <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
-                  Total Keys
+                  Type (Auto)
                 </th>
                 <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
-                  Remaining (MAK)
+                  Remaining Counts
+                </th>
+                <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
+                  Is Sold
                 </th>
                 <th className="text-[10px] font-mono tracking-widest uppercase text-muted-foreground pb-3">
                   Status
@@ -204,51 +210,70 @@ export function ProcessSection() {
             <tbody className="divide-y divide-border">
               {[
                 {
-                  product: "Windows 11 Enterprise",
-                  version: "24H2",
-                  type: "MAK",
-                  total: "500",
-                  remaining: "342",
-                  status: "ACTIVE",
+                  key: "XXX-XXX-XXX-XXX-XXX",
+                  pid: "XXXXX-XXXXX-XXX-XXXXX-XXXX.XXXX-XXXXXXX",
+                  description: "Office24_ProPlus2024VL_MAK_AE2",
+                  subDescription: "ProPlus2024Volume",
+                  keyType: "Office 2024 Professional Plus",
+                  autoType: "Volume:MAK",
+                  remaining: "20",
+                  sold: "NO",
+                  status: "AVAILABLE",
                 },
                 {
-                  product: "Microsoft Office",
-                  version: "365",
-                  type: "Volume",
-                  total: "250",
-                  remaining: "187",
-                  status: "ACTIVE",
+                  key: "XXX-XXX-XXX-XXX-XXX",
+                  pid: "XXXXX-XXXXX-XXX-XXXXX-XXXX.XXXX-XXXXXXX",
+                  description: "Office24_VisioPro2024VL_MAK_AE",
+                  subDescription: "VisioPro2024Volume",
+                  keyType: "Visio 2024 Professional Plus MAK",
+                  autoType: "Volume:MAK",
+                  remaining: "2",
+                  sold: "NO",
+                  status: "AVAILABLE",
                 },
                 {
-                  product: "Exchange Server",
-                  version: "2019",
-                  type: "Volume",
-                  total: "50",
-                  remaining: "45",
-                  status: "ACTIVE",
+                  key: "XXX-XXX-XXX-XXX-XXX",
+                  pid: "XXXXX-XXXXX-XXX-XXXXX-XXXX.XXXX-XXXXXXX",
+                  description: "Windows 10 Enterprise IoT LTSC 2021",
+                  subDescription: "IoTEnterpriseS",
+                  keyType: "Windows 10 Enterprise IoT LTSC 2021",
+                  autoType: "OEM:NONSLP",
+                  remaining: "10",
+                  sold: "NO",
+                  status: "AVAILABLE",
                 },
                 {
-                  product: "Windows Server",
-                  version: "2022",
-                  type: "MAK",
-                  total: "100",
-                  remaining: "28",
-                  status: "WARNING",
+                  key: "XXX-XXX-XXX-XXX-XXX",
+                  pid: "XXXXX-XXXXX-XXX-XXXXX-XXXX.XXXX-XXXXXXX",
+                  description: "Win 10 RTM Professional Volume:MAK",
+                  subDescription: "Professional",
+                  keyType: "Windows 11 Professional",
+                  autoType: "Volume:MAK",
+                  remaining: "300",
+                  sold: "YES",
+                  status: "AVAILABLE",
                 },
               ].map((row, idx) => (
                 <tr key={idx} className="hover:bg-muted/20 transition-colors">
                   <td className="text-xs font-mono text-foreground py-3">
-                    {row.product}
-                    <span className="text-muted-foreground ml-1">({row.version})</span>
+                    <span className="block">{row.key}</span>
+                    <span className="block text-muted-foreground mt-1">{row.pid}</span>
                   </td>
-                  <td className="text-xs font-mono text-foreground py-3">{row.type}</td>
-                  <td className="text-xs font-mono text-foreground py-3">{row.total}</td>
-                  <td className="text-xs font-mono text-primary py-3 font-bold">
-                    {row.remaining}
+                  <td className="text-xs font-mono text-foreground py-3">
+                    <span className="block">{row.description}</span>
+                    <span className="block text-muted-foreground mt-1">{row.subDescription}</span>
+                  </td>
+                  <td className="text-xs font-mono text-foreground py-3">{row.keyType}</td>
+                  <td className="text-xs font-mono text-foreground py-3">{row.autoType}</td>
+                  <td className="text-xs font-mono text-primary py-3 font-bold">{row.remaining}</td>
+                  <td className="text-xs font-mono py-3">
+                    <span className="px-2 py-1 border border-red-500 text-red-500 text-[10px] tracking-widest uppercase">
+                      {row.sold}
+                    </span>
                   </td>
                   <td className="text-xs font-mono py-3">
                     <span
-                      className={`px-2 py-1 border text-[10px] tracking-widest uppercase ${row.status === "ACTIVE"
+                      className={`px-2 py-1 border text-[10px] tracking-widest uppercase ${row.status === "AVAILABLE"
                         ? "border-primary text-primary"
                         : "border-yellow-600 text-yellow-600"
                         }`}
