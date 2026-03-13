@@ -15,6 +15,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "laravel/wayfinder": "^0.1.11",
+        "ralphjsmit/laravel-seo": "^1.7",
         "stechstudio/filament-impersonate": "^5.1"
     },
     "require-dev": {
