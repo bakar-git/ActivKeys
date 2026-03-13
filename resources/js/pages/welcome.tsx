@@ -1,26 +1,31 @@
 import React from 'react';
-import Hero from '@/components/Hero';
-import Features from '@/components/Features';
-import Services from '@/components/Services';
-import UseCases from '@/components/UseCases';
-import Pricing from '@/components/Pricing';
-import Testimonials from '@/components/Testimonials';
-import CTA from '@/components/CTA';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import { Navbar } from '@/components/navbar';
+import { HeroSection } from '@/components/hero-section';
+import { FeatureGrid } from '@/components/feature-grid';
+import { AboutSection } from '@/components/about-section';
+import { ProcessSection } from '@/components/process-section';
+import { FlexibilitySection } from '@/components/flexibility-section';
+import { PricingSection } from '@/components/pricing-section';
+import { GlitchMarquee } from '@/components/glitch-marquee';
+import { Footer } from '@/components/footer';
+import { ThemeProvider } from '@/components/theme-provider';
 
 export default function Welcome() {
     return (
-        <div className="min-h-screen bg-gray-900 text-white">
-            <Header />
-            <Hero />
-            <Features />
-            <Services />
-            <UseCases />
-            <Pricing />
-            <Testimonials />
-            <CTA />
-            <Footer />
-        </div>
+        <ThemeProvider>
+            <div className="min-h-screen dot-grid-bg">
+                <Navbar />
+                <main>
+                    <HeroSection />
+                    <FeatureGrid />
+                    <AboutSection />
+                    <ProcessSection />
+                    <FlexibilitySection />
+                    <PricingSection />
+                    <GlitchMarquee />
+                </main>
+                <Footer />
+            </div>
+        </ThemeProvider>
     );
 }
