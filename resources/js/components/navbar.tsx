@@ -29,7 +29,7 @@ export function Navbar() {
             transition={{ delay: 0.2, duration: 0.4 }}
             className="flex items-center gap-3"
           >
-            <LogoIcon size={20} />
+            <LogoIcon size={36} />
             <span className="text-xs font-mono tracking-[0.15em] uppercase font-bold">
               ActivKeys
             </span>

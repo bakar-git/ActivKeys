@@ -170,63 +170,6 @@ export function FeatureGrid() {
           </div>
         </div>
       </motion.div>
-
-      {/* Interactive Bento Grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        className="grid grid-cols-1 md:grid-cols-2 border-2 border-foreground"
-      >
-        {/* Terminal */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-          variants={cardVariants}
-          className="border-b-2 md:border-b-0 md:border-r-2 border-foreground min-h-[280px]"
-        >
-          <TerminalCard />
-        </motion.div>
-
-        {/* Dither */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={1}
-          variants={cardVariants}
-          className="border-b-2 md:border-b-0 border-foreground min-h-[280px]"
-        >
-          <DitherCard />
-        </motion.div>
-
-        {/* Metrics */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={2}
-          variants={cardVariants}
-          className="border-t-2 md:border-r-2 border-foreground min-h-[280px]"
-        >
-          <MetricsCard />
-        </motion.div>
-
-        {/* Status */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={3}
-          variants={cardVariants}
-          className="border-t-2 border-foreground min-h-[280px]"
-        >
-          <StatusCard />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }
