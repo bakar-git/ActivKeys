@@ -40,7 +40,7 @@ const steps = [
 
 export function ProcessSection() {
   return (
-    <section className="w-full px-6 py-20 lg:px-12">
+    <section id="how-it-works" className="w-full px-6 py-20 lg:px-12">
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -83,8 +83,8 @@ export function ProcessSection() {
         >
           {/* Timeline visualization */}
           <div className="relative">
-            {/* Background line */}
-            <div className="absolute top-20 left-0 right-0 h-1 bg-border" />
+            {/* Background line — top-12 centres on the circles (p-6 padding + half of w-12) */}
+            <div className="absolute top-12 left-0 right-0 h-px bg-border" />
 
             {/* Steps */}
             <div className="grid grid-cols-5 gap-0 relative z-10">
@@ -101,7 +101,7 @@ export function ProcessSection() {
                   >
                     {/* Circle number */}
                     <div className="w-12 h-12 rounded-full border-2 border-foreground bg-background flex items-center justify-center mb-4 relative z-20">
-                      <span className="text-xs font-mono font-bold text-[#ea580c]">
+                      <span className="text-xs font-mono font-bold text-primary">
                         {step.number}
                       </span>
                     </div>
@@ -144,8 +144,8 @@ export function ProcessSection() {
               className="border-2 border-foreground p-4 flex gap-4"
             >
               {/* Number circle */}
-              <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-[#ea580c] bg-background flex items-center justify-center">
-                <span className="text-xs font-mono font-bold text-[#ea580c]">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-primary bg-background flex items-center justify-center">
+                <span className="text-xs font-mono font-bold text-primary">
                   {step.number}
                 </span>
               </div>
@@ -243,16 +243,15 @@ export function ProcessSection() {
                   </td>
                   <td className="text-xs font-mono text-foreground py-3">{row.type}</td>
                   <td className="text-xs font-mono text-foreground py-3">{row.total}</td>
-                  <td className="text-xs font-mono text-[#ea580c] py-3 font-bold">
+                  <td className="text-xs font-mono text-primary py-3 font-bold">
                     {row.remaining}
                   </td>
                   <td className="text-xs font-mono py-3">
                     <span
-                      className={`px-2 py-1 border text-[10px] tracking-widest uppercase ${
-                        row.status === "ACTIVE"
-                          ? "border-[#ea580c] text-[#ea580c]"
-                          : "border-yellow-600 text-yellow-600"
-                      }`}
+                      className={`px-2 py-1 border text-[10px] tracking-widest uppercase ${row.status === "ACTIVE"
+                        ? "border-primary text-primary"
+                        : "border-yellow-600 text-yellow-600"
+                        }`}
                     >
                       {row.status}
                     </span>

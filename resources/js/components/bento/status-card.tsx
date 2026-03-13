@@ -46,7 +46,7 @@ export function StatusCard() {
               <span
                 className="h-1.5 w-1.5"
                 style={{
-                  backgroundColor: region.status === "ACTIVE" ? "#ea580c" : "hsl(var(--muted-foreground))",
+                  backgroundColor: region.status === "ACTIVE" ? "var(--primary)" : "var(--muted-foreground)",
                 }}
               />
               <span className="text-xs font-mono text-muted-foreground">{region.status}</span>

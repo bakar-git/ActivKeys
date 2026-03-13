@@ -50,7 +50,7 @@ const deploymentOptions = [
 
 export function FlexibilitySection() {
   return (
-    <section className="w-full px-6 py-20 lg:px-12">
+    <section id="security" className="w-full px-6 py-20 lg:px-12">
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -98,21 +98,19 @@ export function FlexibilitySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5, ease }}
-              className={`border-2 p-6 lg:p-8 flex flex-col gap-4 transition-all duration-300 ${
-                option.id === "cloud"
-                  ? "border-[#ea580c] bg-[#ea580c]/5"
-                  : "border-foreground hover:border-[#ea580c]/50 hover:bg-muted/20"
-              }`}
+              className={`border-2 p-6 lg:p-8 flex flex-col gap-4 transition-all duration-300 ${option.id === "cloud"
+                  ? "border-primary bg-primary/5"
+                  : "border-foreground hover:border-primary/50 hover:bg-muted/20"
+                }`}
             >
               {/* Header with icon and label */}
               <div className="flex items-start justify-between">
                 <Icon size={24} strokeWidth={1.5} className="text-foreground" />
                 <span
-                  className={`text-[10px] font-mono tracking-widest uppercase px-2 py-1 border ${
-                    option.id === "cloud"
-                      ? "border-[#ea580c] text-[#ea580c]"
+                  className={`text-[10px] font-mono tracking-widest uppercase px-2 py-1 border ${option.id === "cloud"
+                      ? "border-primary text-primary"
                       : "border-muted-foreground text-muted-foreground"
-                  }`}
+                    }`}
                 >
                   {option.label}
                 </span>
@@ -123,7 +121,7 @@ export function FlexibilitySection() {
                 <h3 className="text-xs lg:text-sm font-mono font-bold tracking-tight uppercase text-foreground">
                   {option.title}
                 </h3>
-                <p className="text-[10px] font-mono text-[#ea580c] mt-1">{option.subtitle}</p>
+                <p className="text-[10px] font-mono text-primary mt-1">{option.subtitle}</p>
               </div>
 
               {/* Description */}
@@ -136,7 +134,7 @@ export function FlexibilitySection() {
                 <div className="grid grid-cols-2 gap-2">
                   {option.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-2">
-                      <span className="text-[#ea580c] text-xs mt-0.5">✓</span>
+                      <span className="text-primary text-xs mt-0.5">✓</span>
                       <span className="text-[10px] font-mono text-muted-foreground">{feature}</span>
                     </div>
                   ))}
@@ -194,7 +192,7 @@ export function FlexibilitySection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease, delay: 0.3 }}
-        className="border-2 border-[#ea580c] bg-[#ea580c]/5 p-6 lg:p-8"
+        className="border-2 border-primary bg-primary/5 p-6 lg:p-8"
       >
         <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center">
           <div className="flex-1">

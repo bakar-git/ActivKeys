@@ -54,7 +54,7 @@ function StatusLine() {
 
   return (
     <div className="flex items-center gap-2 text-[10px] tracking-widest text-muted-foreground uppercase font-mono">
-      <span className="h-1.5 w-1.5 bg-[#ea580c]" />
+      <span className="h-1.5 w-1.5 bg-primary" />
       <span>live throughput: {throughput}k req/s</span>
     </div>
   )
@@ -62,7 +62,7 @@ function StatusLine() {
 
 /* ── blinking cursor indicator ── */
 function BlinkDot() {
-  return <span className="inline-block h-2 w-2 bg-[#ea580c] animate-blink" />
+  return <span className="inline-block h-2 w-2 bg-primary animate-blink" />
 }
 
 /* ── tier config ── */
@@ -145,24 +145,22 @@ function PricingCard({ tier, index }: { tier: Tier; index: number }) {
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ delay: index * 0.12, duration: 0.6, ease }}
-      className={`flex flex-col h-full ${
-        tier.highlighted
+      className={`flex flex-col h-full ${tier.highlighted
           ? "border-2 border-foreground bg-foreground text-background"
           : "border-2 border-foreground bg-background text-foreground"
-      }`}
+        }`}
     >
       {/* Card header */}
       <div
-        className={`flex items-center justify-between px-5 py-3 border-b-2 ${
-          tier.highlighted ? "border-background/20" : "border-foreground"
-        }`}
+        className={`flex items-center justify-between px-5 py-3 border-b-2 ${tier.highlighted ? "border-background/20" : "border-foreground"
+          }`}
       >
         <span className="text-[10px] tracking-[0.2em] uppercase font-mono">
           {tier.name}
         </span>
         <div className="flex items-center gap-2">
           {tier.tag && (
-            <span className="bg-[#ea580c] text-background text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 font-mono">
+            <span className="bg-primary text-background text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 font-mono">
               {tier.tag}
             </span>
           )}
@@ -184,18 +182,16 @@ function PricingCard({ tier, index }: { tier: Tier; index: number }) {
           )}
           {tier.period && (
             <span
-              className={`text-xs font-mono tracking-widest uppercase ${
-                tier.highlighted ? "text-background/50" : "text-muted-foreground"
-              }`}
+              className={`text-xs font-mono tracking-widest uppercase ${tier.highlighted ? "text-background/50" : "text-muted-foreground"
+                }`}
             >
               {tier.period}
             </span>
           )}
         </div>
         <p
-          className={`text-xs font-mono mt-3 leading-relaxed ${
-            tier.highlighted ? "text-background/60" : "text-muted-foreground"
-          }`}
+          className={`text-xs font-mono mt-3 leading-relaxed ${tier.highlighted ? "text-background/60" : "text-muted-foreground"
+            }`}
         >
           {tier.description}
         </p>
@@ -203,9 +199,8 @@ function PricingCard({ tier, index }: { tier: Tier; index: number }) {
 
       {/* Feature list */}
       <div
-        className={`flex-1 px-5 py-4 border-t-2 ${
-          tier.highlighted ? "border-background/20" : "border-foreground"
-        }`}
+        className={`flex-1 px-5 py-4 border-t-2 ${tier.highlighted ? "border-background/20" : "border-foreground"
+          }`}
       >
         <div className="flex flex-col gap-3">
           {tier.features.map((feature, fi) => (
@@ -221,25 +216,23 @@ function PricingCard({ tier, index }: { tier: Tier; index: number }) {
                 <Check
                   size={12}
                   strokeWidth={2.5}
-                  className="mt-0.5 shrink-0 text-[#ea580c]"
+                  className="mt-0.5 shrink-0 text-primary"
                 />
               ) : (
                 <Minus
                   size={12}
                   strokeWidth={2}
-                  className={`mt-0.5 shrink-0 ${
-                    tier.highlighted ? "text-background/30" : "text-muted-foreground/40"
-                  }`}
+                  className={`mt-0.5 shrink-0 ${tier.highlighted ? "text-background/30" : "text-muted-foreground/40"
+                    }`}
                 />
               )}
               <span
-                className={`text-xs font-mono leading-relaxed ${
-                  feature.included
+                className={`text-xs font-mono leading-relaxed ${feature.included
                     ? ""
                     : tier.highlighted
-                    ? "text-background/30 line-through"
-                    : "text-muted-foreground/40 line-through"
-                }`}
+                      ? "text-background/30 line-through"
+                      : "text-muted-foreground/40 line-through"
+                  }`}
               >
                 {feature.text}
               </span>
@@ -253,13 +246,12 @@ function PricingCard({ tier, index }: { tier: Tier; index: number }) {
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
-          className={`group w-full flex items-center justify-center gap-0 text-xs font-mono tracking-wider uppercase ${
-            tier.highlighted
+          className={`group w-full flex items-center justify-center gap-0 text-xs font-mono tracking-wider uppercase ${tier.highlighted
               ? "bg-background text-foreground"
               : "bg-foreground text-background"
-          }`}
+            }`}
         >
-          <span className="flex items-center justify-center w-9 h-9 bg-[#ea580c]">
+          <span className="flex items-center justify-center w-9 h-9 bg-primary">
             <ArrowRight size={14} strokeWidth={2} className="text-background" />
           </span>
           <span className="flex-1 py-2.5">{tier.cta}</span>
@@ -272,7 +264,7 @@ function PricingCard({ tier, index }: { tier: Tier; index: number }) {
 /* ── main pricing section ── */
 export function PricingSection() {
   return (
-    <section className="w-full px-6 py-20 lg:px-12">
+    <section id="pricing" className="w-full px-6 py-20 lg:px-12">
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}

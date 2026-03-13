@@ -65,7 +65,7 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section className="w-full px-6 py-20 lg:px-12">
+    <section id="features" className="w-full px-6 py-20 lg:px-12">
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -100,7 +100,7 @@ export function FeatureGrid() {
               <span className="text-xs font-mono tracking-[0.2em] uppercase text-muted-foreground">
                 {feature.number}
               </span>
-              <Check size={16} className="text-[#ea580c]" strokeWidth={2.5} />
+              <Check size={16} className="text-primary" strokeWidth={2.5} />
             </div>
 
             {/* Title */}
@@ -115,7 +115,7 @@ export function FeatureGrid() {
 
             {/* Benefit highlight */}
             <div className="pt-3 border-t border-border">
-              <span className="text-xs font-mono text-[#ea580c] italic">
+              <span className="text-xs font-mono text-primary italic">
                 {feature.benefit}
               </span>
             </div>
@@ -155,15 +155,15 @@ export function FeatureGrid() {
             </h3>
             <ul className="text-xs lg:text-sm font-mono text-muted-foreground space-y-2">
               <li className="flex items-start gap-2">
-                <span className="text-[#ea580c] mt-1">›</span>
+                <span className="text-primary mt-1">›</span>
                 <span>Teams managing 100+ active keys across global user bases</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#ea580c] mt-1">›</span>
+                <span className="text-primary mt-1">›</span>
                 <span>Businesses requiring compliance and audit documentation</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#ea580c] mt-1">›</span>
+                <span className="text-primary mt-1">›</span>
                 <span>Organizations needing sub-10ms validation latency</span>
               </li>
             </ul>

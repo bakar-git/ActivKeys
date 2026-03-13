@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import Image from "next/image"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -45,7 +44,7 @@ function ScrambleText({ text, className }: { text: string; className?: string })
 
 /* ── blinking cursor ── */
 function BlinkDot() {
-  return <span className="inline-block h-2 w-2 bg-[#ea580c] animate-blink" />
+  return <span className="inline-block h-2 w-2 bg-primary animate-blink" />
 }
 
 /* ── live uptime counter ── */
@@ -68,7 +67,7 @@ function UptimeCounter() {
   }
 
   return (
-    <span className="font-mono text-[#ea580c]" style={{ fontVariantNumeric: "tabular-nums" }}>
+    <span className="font-mono text-primary" style={{ fontVariantNumeric: "tabular-nums" }}>
       {format(seconds)}
     </span>
   )
@@ -104,7 +103,7 @@ function StatBlock({ label, value, index }: { label: string; value: string; inde
 /* ── main about section ── */
 export function AboutSection() {
   return (
-    <section className="w-full px-6 py-20 lg:px-12">
+    <section id="about" className="w-full px-6 py-20 lg:px-12">
       {/* Section label */}
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -125,40 +124,84 @@ export function AboutSection() {
 
       {/* Two-column layout */}
       <div className="flex flex-col lg:flex-row gap-0 border-2 border-foreground">
-        {/* Left: Image */}
+        {/* Left: API Code Preview */}
         <motion.div
           initial={{ opacity: 0, x: -30, filter: "blur(6px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease }}
-          className="relative w-full lg:w-1/2 min-h-[300px] lg:min-h-[500px] border-b-2 lg:border-b-0 lg:border-r-2 border-foreground overflow-hidden bg-foreground"
+          className="relative w-full lg:w-1/2 min-h-[300px] lg:min-h-[500px] border-b-2 lg:border-b-0 lg:border-r-2 border-foreground overflow-hidden bg-foreground flex flex-col"
         >
-          {/* Image label overlay */}
-          <div className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-4 py-2 bg-foreground/80 backdrop-blur-sm">
-            <span className="text-[10px] tracking-[0.2em] uppercase text-background/60 font-mono">
-              RENDER: key_management_system.obj
-            </span>
-            <span className="text-[10px] tracking-[0.2em] uppercase text-[#ea580c] font-mono">
-              LIVE
+          {/* Panel header */}
+          <div className="flex items-center gap-2 px-4 py-3 border-b-2 border-background/20 shrink-0">
+            <span className="h-2 w-2 bg-primary rounded-full" />
+            <span className="h-2 w-2 bg-background/40 rounded-full" />
+            <span className="h-2 w-2 border border-background/20 rounded-full" />
+            <span className="ml-auto text-[10px] tracking-widest text-background/50 uppercase font-mono">
+              api.activkeys.io / v1 / validate
             </span>
           </div>
 
-          <img
-            src="/images/about-isometric.jpg"
-            alt="Dashboard view of ActivKeys key management system with validation and tracking metrics"
-            // fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          // priority
-          />
+          {/* Code content */}
+          <div className="flex-1 p-5 lg:p-6 font-mono text-xs leading-relaxed overflow-auto">
+            <p className="text-background/40 mb-3">{"// POST /api/v1/keys/validate"}</p>
+            <p className="text-background/60">{"{"}</p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"key"</span>
+              {": "}
+              <span className="text-background/80">"XXXX-YYYY-ZZZZ-AAAA"</span>
+              {","}
+            </p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"product_id"</span>
+              {": "}
+              <span className="text-background/80">"win11-enterprise-24h2"</span>
+              {","}
+            </p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"machine_id"</span>
+              {": "}
+              <span className="text-background/80">"abc123def456"</span>
+            </p>
+            <p className="text-background/60">{"}"}</p>
 
-          {/* Bottom image coordinates */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 flex items-center justify-between px-4 py-2 bg-foreground/80 backdrop-blur-sm">
+            <div className="my-5 border-t border-background/10" />
+
+            <p className="text-background/40 mb-3">{"// 200 OK — response"}</p>
+            <p className="text-background/60">{"{"}</p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"status"</span>
+              {": "}
+              <span className="text-green-400">"VALID"</span>
+              {","}
+            </p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"remaining_activations"</span>
+              {": "}
+              <span className="text-background/80">342</span>
+              {","}
+            </p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"response_time_ms"</span>
+              {": "}
+              <span className="text-background/80">8</span>
+              {","}
+            </p>
+            <p className="text-background/60 pl-4">
+              <span className="text-primary">"audit_id"</span>
+              {": "}
+              <span className="text-background/80">"audit_7f3a..."</span>
+            </p>
+            <p className="text-background/60">{"}"}</p>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="flex items-center justify-between px-4 py-2 border-t-2 border-background/20 shrink-0">
             <span className="text-[10px] tracking-[0.2em] uppercase text-background/40 font-mono">
-              {"VIEW: dashboard"}
+              {"< 10ms"}
             </span>
-            <span className="text-[10px] tracking-[0.2em] uppercase text-background/40 font-mono">
-              {"SCALE: enterprise"}
+            <span className="text-[10px] tracking-[0.2em] uppercase text-primary font-mono">
+              RESPONSE: VALID
             </span>
           </div>
         </motion.div>
@@ -193,7 +236,7 @@ export function AboutSection() {
               >
                 Enterprise key management
                 <br />
-                <span className="text-[#ea580c]">purpose-built</span>
+                <span className="text-primary">purpose-built</span>
               </motion.h2>
 
               <motion.div
@@ -225,7 +268,7 @@ export function AboutSection() {
                 style={{ transformOrigin: "left" }}
                 className="flex items-center gap-3 py-3 border-t-2 border-b-2 border-foreground"
               >
-                <span className="h-1.5 w-1.5 bg-[#ea580c]" />
+                <span className="h-1.5 w-1.5 bg-primary" />
                 <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground font-mono">
                   UPTIME:
                 </span>

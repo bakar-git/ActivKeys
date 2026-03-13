@@ -34,7 +34,7 @@ function DataPacket({ x1, y1, x2, y2, delay }: { x1: number; y1: number; x2: num
   return (
     <motion.circle
       r={4}
-      fill="#ea580c"
+      fill="var(--primary)"
       initial={{ cx: x1 + 60, cy: y1 + 20 }}
       animate={{
         cx: [x1 + 60, x2 + 60],
@@ -73,7 +73,7 @@ export function TopologyGraph() {
             y1={0}
             x2={i * 24}
             y2={360}
-            stroke="hsl(var(--border))"
+            stroke="var(--border)"
             strokeWidth={0.5}
           />
         ))}
@@ -84,7 +84,7 @@ export function TopologyGraph() {
             y1={i * 24}
             x2={760}
             y2={i * 24}
-            stroke="hsl(var(--border))"
+            stroke="var(--border)"
             strokeWidth={0.5}
           />
         ))}
@@ -100,7 +100,7 @@ export function TopologyGraph() {
               y1={from.y + 20}
               x2={to.x + 60}
               y2={to.y + 20}
-              stroke="hsl(var(--foreground))"
+              stroke="var(--foreground)"
               strokeWidth={1.5}
               strokeDasharray="6 3"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -139,15 +139,15 @@ export function TopologyGraph() {
               y={node.y}
               width={120}
               height={40}
-              fill="hsl(var(--foreground))"
-              stroke="hsl(var(--foreground))"
+              fill="var(--foreground)"
+              stroke="var(--foreground)"
               strokeWidth={2}
             />
             <text
               x={node.x + 60}
               y={node.y + 24}
               textAnchor="middle"
-              fill="hsl(var(--background))"
+              fill="var(--background)"
               fontSize={11}
               fontFamily="var(--font-mono), monospace"
               fontWeight={600}
@@ -156,7 +156,7 @@ export function TopologyGraph() {
               {node.label}
             </text>
             {/* Status indicator */}
-            <circle cx={node.x + 110} cy={node.y + 10} r={3} fill="#ea580c">
+            <circle cx={node.x + 110} cy={node.y + 10} r={3} fill="var(--primary)">
               <animate
                 attributeName="opacity"
                 values="1;0.3;1"

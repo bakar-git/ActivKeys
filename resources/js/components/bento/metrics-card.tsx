@@ -67,7 +67,7 @@ export function MetricsCard() {
         <span className="text-[10px] tracking-widest text-muted-foreground uppercase">
           validation.metrics
         </span>
-        <span className="inline-block h-2 w-2 bg-[#ea580c]" />
+        <span className="inline-block h-2 w-2 bg-primary" />
       </div>
       <div className="flex-1 flex flex-col justify-center gap-6 p-6">
         <ScrambleNumber target="8.4ms" label="Avg Response" delay={500} />

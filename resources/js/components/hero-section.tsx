@@ -8,9 +8,20 @@ const ease = [0.22, 1, 0.36, 1] as const
 
 export function HeroSection() {
   return (
-    <section className="relative w-full px-12 pt-6 pb-12 lg:px-24 lg:pt-10 lg:pb-16">
-      <div className="flex flex-col items-center text-center">
-        {/* Top headline: VALIDATE. TRACK. -- Geist Pixel Grid */}
+    <section id="hero" className="relative w-full px-12 pt-6 pb-12 lg:px-24 lg:pt-10 lg:pb-16 overflow-hidden">
+      {/* Radial glow behind content */}
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        aria-hidden="true"
+      >
+        <div
+          className="w-[600px] h-[400px] rounded-full opacity-10 blur-3xl"
+          style={{ background: "radial-gradient(ellipse at center, var(--primary) 0%, transparent 70%)" }}
+        />
+      </div>
+
+      <div className="relative flex flex-col items-center text-center">
+        {/* Top headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -30,7 +41,7 @@ export function HeroSection() {
           <WorkflowDiagram />
         </motion.div>
 
-        {/* Bottom headline: MANAGE. -- Geist Pixel Grid */}
+        {/* Bottom headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -51,28 +62,35 @@ export function HeroSection() {
           ActivKeys is the enterprise key management platform. Validate license keys. Track activations. Manage your entire key ecosystem in real-time.
         </motion.p>
 
-        {/* CTA Button */}
-        <motion.button
+        {/* CTA Buttons */}
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6, ease }}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          className="group flex items-center gap-0 bg-foreground text-background text-sm font-mono tracking-wider uppercase"
+          className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <span className="flex items-center justify-center w-10 h-10 bg-[#ea580c]">
-            <motion.span
-              className="inline-flex"
-              whileHover={{ x: 3 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            >
+          <motion.a
+            href="/app"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="group flex items-center gap-0 bg-foreground text-background text-sm font-mono tracking-wider uppercase"
+          >
+            <span className="flex items-center justify-center w-10 h-10 bg-primary">
               <ArrowRight size={16} strokeWidth={2} className="text-background" />
-            </motion.span>
-          </span>
-          <span className="px-5 py-2.5">
-            Request a Demo
-          </span>
-        </motion.button>
+            </span>
+            <span className="px-5 py-2.5">
+              Start Free Trial
+            </span>
+          </motion.a>
+          <motion.a
+            href="#how-it-works"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="text-xs font-mono tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors duration-200 underline underline-offset-4"
+          >
+            See how it works ↓
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   )

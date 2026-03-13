@@ -3,8 +3,8 @@
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
-const LEFT_LABELS = ["Train", "Package", "Version"]
-const RIGHT_LABELS = ["Route", "Deploy", "Observe"]
+const LEFT_LABELS = ["Import", "Generate", "Assign"]
+const RIGHT_LABELS = ["Validate", "Track", "Revoke"]
 
 function PillLabel({
   label,
@@ -30,14 +30,14 @@ function PillLabel({
         height={26}
         rx={13}
         fill="none"
-        stroke="hsl(var(--foreground))"
+        stroke="var(--foreground)"
         strokeWidth={1.5}
       />
       <text
         x={x + 40}
         y={y + 17}
         textAnchor="middle"
-        fill="hsl(var(--foreground))"
+        fill="var(--foreground)"
         fontSize={10}
         fontFamily="var(--font-mono), monospace"
         fontWeight={500}
@@ -69,7 +69,7 @@ export function WorkflowDiagram() {
         viewBox="0 0 800 200"
         className="w-full h-auto"
         role="img"
-        aria-label="Workflow diagram showing connected deployment stages: Train, Package, Version, Route, Deploy, Observe"
+        aria-label="Workflow diagram showing key lifecycle: Import, Generate, Assign through ActivKeys to Validate, Track, Revoke"
       >
         {/* Left lines from center to left labels */}
         {LEFT_LABELS.map((_, i) => {
@@ -82,7 +82,7 @@ export function WorkflowDiagram() {
               y1={centerY}
               x2={pillX + 80}
               y2={pillY + 13}
-              stroke="hsl(var(--border))"
+              stroke="var(--border)"
               strokeWidth={1}
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
@@ -102,7 +102,7 @@ export function WorkflowDiagram() {
               y1={centerY}
               x2={pillX}
               y2={pillY + 13}
-              stroke="hsl(var(--border))"
+              stroke="var(--border)"
               strokeWidth={1}
               initial={{ pathLength: 0, opacity: 0 }}
               animate={{ pathLength: 1, opacity: 1 }}
@@ -119,7 +119,7 @@ export function WorkflowDiagram() {
             <motion.circle
               key={`left-packet-${i}`}
               r={3}
-              fill="#ea580c"
+              fill="var(--primary)"
               initial={{ cx: pillX + 80, cy: pillY + 13 }}
               animate={{
                 cx: [pillX + 80, centerX - 40],
@@ -143,7 +143,7 @@ export function WorkflowDiagram() {
             <motion.circle
               key={`right-packet-${i}`}
               r={3}
-              fill="#ea580c"
+              fill="var(--primary)"
               initial={{ cx: centerX + 40, cy: centerY }}
               animate={{
                 cx: [centerX + 40, pillX],
@@ -193,17 +193,17 @@ export function WorkflowDiagram() {
             y={centerY - 36}
             width={72}
             height={72}
-            fill="hsl(var(--muted))"
-            stroke="hsl(var(--border))"
+            fill="var(--muted)"
+            stroke="var(--border)"
             strokeWidth={1.5}
           />
           {/* Abstract cross/flower logo shape */}
-          <line x1={centerX} y1={centerY - 18} x2={centerX} y2={centerY + 18} stroke="hsl(var(--foreground))" strokeWidth={3} />
-          <line x1={centerX - 18} y1={centerY} x2={centerX + 18} y2={centerY} stroke="hsl(var(--foreground))" strokeWidth={3} />
-          <line x1={centerX - 12} y1={centerY - 12} x2={centerX + 12} y2={centerY + 12} stroke="hsl(var(--foreground))" strokeWidth={2} />
-          <line x1={centerX + 12} y1={centerY - 12} x2={centerX - 12} y2={centerY + 12} stroke="hsl(var(--foreground))" strokeWidth={2} />
+          <line x1={centerX} y1={centerY - 18} x2={centerX} y2={centerY + 18} stroke="var(--foreground)" strokeWidth={3} />
+          <line x1={centerX - 18} y1={centerY} x2={centerX + 18} y2={centerY} stroke="var(--foreground)" strokeWidth={3} />
+          <line x1={centerX - 12} y1={centerY - 12} x2={centerX + 12} y2={centerY + 12} stroke="var(--foreground)" strokeWidth={2} />
+          <line x1={centerX + 12} y1={centerY - 12} x2={centerX - 12} y2={centerY + 12} stroke="var(--foreground)" strokeWidth={2} />
           {/* Pulsing ring */}
-          <circle cx={centerX} cy={centerY} r={30} fill="none" stroke="#ea580c" strokeWidth={1}>
+          <circle cx={centerX} cy={centerY} r={30} fill="none" stroke="var(--primary)" strokeWidth={1}>
             <animate
               attributeName="r"
               values="30;34;30"
