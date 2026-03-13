@@ -17,4 +17,5 @@ createServer((page) =>
             ),
         setup: ({ App, props }) => <App {...props} />,
     }),
+    { cluster: true },
 );
