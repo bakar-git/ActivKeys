@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
+import { LogoIcon } from "@/components/logo-icon"
 
 const LEFT_LABELS = ["Import", "Generate", "Assign"]
 const RIGHT_LABELS = ["Validate", "Track", "Revoke"]
@@ -197,11 +198,9 @@ export function WorkflowDiagram() {
             stroke="var(--border)"
             strokeWidth={1.5}
           />
-          {/* Abstract cross/flower logo shape */}
-          <line x1={centerX} y1={centerY - 18} x2={centerX} y2={centerY + 18} stroke="var(--foreground)" strokeWidth={3} />
-          <line x1={centerX - 18} y1={centerY} x2={centerX + 18} y2={centerY} stroke="var(--foreground)" strokeWidth={3} />
-          <line x1={centerX - 12} y1={centerY - 12} x2={centerX + 12} y2={centerY + 12} stroke="var(--foreground)" strokeWidth={2} />
-          <line x1={centerX + 12} y1={centerY - 12} x2={centerX - 12} y2={centerY + 12} stroke="var(--foreground)" strokeWidth={2} />
+          <g transform={`translate(${centerX - 17}, ${centerY - 17})`}>
+            <LogoIcon size={34} />
+          </g>
           {/* Pulsing ring */}
           <circle cx={centerX} cy={centerY} r={30} fill="none" stroke="var(--primary)" strokeWidth={1}>
             <animate
